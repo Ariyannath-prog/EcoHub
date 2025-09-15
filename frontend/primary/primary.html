@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary school standard</title>
+    <link rel="stylesheet" href="primary.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="frontend/favicon_io/android-chrome-512x512.png" alt="EcoTech Logo" class="logo">
+            <span class="brand-name">EcoTech</span>
+        </div>
+
+        
+
+            
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+            <a href="frontend/contact/index.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+            
+
+        <div class="nav-right">
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn-login" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <a href="profile.html">
+                    <img src="https://ui-avatars.com/api/?name=User&background=007bff&color=fff" alt="Profile" class="profile-icon" id="profileIcon">
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+    </nav>
+
+    <header>
+        <h1>Primary School Standard</h1>
+    </header>
+    <main>
+        <h2>TOPICS</h2>
+        <section id="containers">
+            <div class="rows">
+                <a class="topic_link" href="topics/t1.html"><div class="content">1</div></a>
+                <a class="topic_link" href="topics/t6.html"><div class="content">6</div></a>
+                <a class="topic_link" href="topics/t11.html"><div class="content">11</div></a>
+            </div>
+            <div class="rows">
+                <a class="topic_link" href="topics/t2.html"><div class="content">2</div></a>
+                <a class="topic_link" href="topics/t7.html"><div class="content">7</div></a>
+                <a class="topic_link" href="topics/t12.html"><div class="content">12</div></a>
+            </div>
+            <div class="rows">
+                <a class="topic_link" href="topics/t3.html"><div class="content">3</div></a>
+                <a class="topic_link" href="topics/t8.html"><div class="content">8</div></a>
+            </div>
+            <div class="rows">
+                <a class="topic_link" href="topics/t4.html"><div class="content">4</div></a>
+                <a class="topic_link" href="topics/t9.html"><div class="content">9</div></a>
+            </div>
+            <div class="rows">
+                <a class="topic_link" href="topics/t5.html"><div class="content">5</div></a>
+                <a class="topic_link" href="topics/t10.html"><div class="content">10</div></a>
+            </div>
+        </section>
+        <div class="progress-bar-container">
+                <div class="progress-label">Progress</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                </div>
+                <div class="progress-percentage" id="progress-percentage">0%</div>
+            </div>
+        <p id="game_section">
+  <a id="game_link" href="games/index.html">🎮 Click here to play some games!</a>
+</p>
+    </main>
+    <script src="primary.js"></script>
+</body>
+</html>
