@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech</title>
+    
+    <link href="navbar.css" rel="stylesheet"> 
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+   
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="frontend/favicon_io/android-chrome-512x512.png" alt="EcoTech Logo" class="logo">
+            <span class="brand-name">EcoTech</span>
+        </div>
+
+        
+
+            
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="index.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+            <a href="frontend/contact/index.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+            
+
+        <div class="nav-right">
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn-login" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <a href="profile.html">
+                    <img src="https://ui-avatars.com/api/?name=User&background=007bff&color=fff" alt="Profile" class="profile-icon" id="profileIcon">
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+    </nav>
+
+        <!-- Profile Section -->
+            <div class="profile-header">
+                <img src="https://ui-avatars.com/api/?name=User&background=007bff&color=fff" alt="Profile Picture" class="profile-picture" id="profilePicture">
+                <div class="profile-info">
+                    <h2 id="profileName">User Name</h2>
+                    <p id="profileEmail">user@example.com</p>
+                </div>
+            </div>
+            
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">Courses Completed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">85%</span>
+                    <span class="stat-label">Average Score</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">Badges Earned</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">15</span>
+                    <span class="stat-label">Days Streak</span>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="btn-logout" onclick="logout()"><a href="index.html">Logout</a></button>
+            </div>
+        </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <b><p>Created with ❤️ for web development enthusiasts</p></b>
+            
+            <p class="footer-mission">
+                Our mission is to make environmental education engaging, interactive, and practical. 
+                Through gamified learning, quizzes, challenges, and real-world eco-tasks, 
+                we inspire students to build sustainable habits and become changemakers for a greener tomorrow. 
+                Together, we align with <b>SDG goals</b> and <b>NEP 2020</b> to empower India's youth in 
+                protecting the environment.
+            </p>
+            <br>
+            
+            <div class="social-links">
+                <h3>Connect With Us</h3>
+
+                <div>
+                    <a href="https://www.facebook.com/profile.php?id=61580445308257" target="_blank" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon">
+                        Facebook
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://x.com/EcoTech334" target="_blank" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter" class="social-icon">
+                        Twitter
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://www.instagram.com/ecotech726/" target="_blank" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="social-icon">
+                        Instagram
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://www.linkedin.com/in/eco-tech-427875383/" target="_blank" class="social-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="social-icon">
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <p class="copyright">
+                © 2025 EcoTech Platform | Developed for Smart India Hackathon 🌱 | 
+                Empowering Students for a Sustainable Future
+            </p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+            <div class="divider">
+                <span>or</span>
+            </div>
+            <button class="btn-google" onclick="loginWithGoogle()">
+               <img src="frontend/Google__G__logo.svg.webp" alt="Google" class="social-icon">
+               Continue with Google
+            </button>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" onclick="openForgotPasswordModal()" style="color: #008080; text-decoration: none;">
+                    Forgot Password?
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" onclick="openSignupModal()" style="color: #008080; text-decoration: none;">
+                    Don't have an account? Sign Up
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Name:</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Sign Up</button>
+            </form>
+            <div class="divider">
+                <span>or</span>
+            </div>
+            <button class="btn-google" onclick="loginWithGoogle()">
+                <img src="frontend/Google__G__logo.svg.webp" alt="Google" class="social-icon">
+                Sign up with Google
+            </button>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForgotPasswordModal()">&times;</span>
+            <h2>Reset Password</h2>
+            <p style="margin-bottom: 20px;">Enter your email address and we'll send you a link to reset your password.</p>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email:</label>
+                    <input type="email" id="resetEmail" required>
+                </div>
+                <button type="submit" class="btn-submit">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
